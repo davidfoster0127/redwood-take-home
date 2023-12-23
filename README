@@ -1,0 +1,15 @@
+My Battery Pickup API is written in Go since that is my most efficient language at the moment. Go is not required to run the server; simply run the compiled binary by executing `./server`. The binary was built for MacOS, so there may be issues if your host machine is not MacOS/Linux. If Go is installed (highly recommended, it's a fun language), you can start the server with `go run *.go` from within the redwood-take-home directory.
+
+Once the server is running, you can execute `./test.sh` which will submit API requests to the server running at http://localhost:8080 and output responses. The test script uses `jq` to extract the pickup request id from the response, so that will need to be installed if not already. 
+
+The test script:
+- checks for server liveness by hitting the base path
+- posts new rules to the server
+- gets the pricing rules
+- posts a new pickup request
+- gets the new pickup request by id
+- accepts the given quote for the pickup request (via a PATCH)
+- returns all existing pickup requests
+- returns all existing pickup requests that have been accepted
+
+I would have liked to create a swagger document for the API, but it was taking a little too much time to complete. Otherwise it would have been included.
